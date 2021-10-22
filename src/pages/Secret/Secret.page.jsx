@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function SecretPage() {
   return (
     <section>
+      <div>heaader </div>
       <pre>
         welcome, voyager...
         <Link to="/"> ← go back</Link>
