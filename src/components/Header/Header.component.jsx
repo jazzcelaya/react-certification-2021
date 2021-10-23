@@ -1,10 +1,9 @@
 import React from 'react';
+import StyledHeader from '../../styled/Header.styled';
 
-import './Header.styles.css';
-
-function Header() {
+function HeaderBar() {
   return (
-    <div className="searchbar-header">
+    <StyledHeader>
       <div className="row">
         <div>=</div>
         <input type="text" placeholder="wizeline" className="searchbar" />
@@ -17,8 +16,8 @@ function Header() {
 
         <div className="user-icon" />
       </div>
-    </div>
+    </StyledHeader>
   );
 }
 
-export default Header;
+export default HeaderBar;
