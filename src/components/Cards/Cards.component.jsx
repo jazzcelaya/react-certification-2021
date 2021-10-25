@@ -14,9 +14,11 @@ function Cards() {
       <StyledWelcomeHeader>Welcome to the Challenge!</StyledWelcomeHeader>
       <StyledCardsContainer>
         {items.map((item) => {
-          const { snippet } = item;
-          console.log(snippet.thumbnails.default.url);
-          return <Card image={snippet.thumbnails.default.url} />;
+          const { thumbnails, title, description } = item.snippet;
+          console.log(item);
+          return (
+            <Card image={thumbnails.high.url} description={description} title={title} />
+          );
         })}
       </StyledCardsContainer>
     </StyledCardsGeneralContainer>
