@@ -1,21 +1,27 @@
 import React from 'react';
-import StyledHeader from '../../styled/Header.styled';
+import {
+  StyledHeader,
+  StyledRowContainer,
+  StyledSearchBar,
+  StyledUserIcon,
+  StyledModeToogle,
+} from '../../styled/Header.styled';
 
 function HeaderBar() {
   return (
     <StyledHeader>
-      <div className="row">
+      <StyledRowContainer>
         <div>=</div>
-        <input type="text" placeholder="wizeline" className="searchbar" />
-      </div>
-      <div className="row">
-        <label htmlFor="testid" className="switch" id="darkmode-switch">
-          <input id="testid" type="checkbox" />
+        <StyledSearchBar type="text" placeholder="wizeline" />
+      </StyledRowContainer>
+      <StyledRowContainer>
+        <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
+          <input id="darkmode-switch" type="checkbox" />
           <span className="slider round" />
-        </label>
+        </StyledModeToogle>
 
-        <div className="user-icon" />
-      </div>
+        <StyledUserIcon />
+      </StyledRowContainer>
     </StyledHeader>
   );
 }
