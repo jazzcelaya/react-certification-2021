@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   color: white;
   display: flex;
-  height: 3rem;
+  height: 64px;
   width: 100%;
   background-color: #1c5476;
   justify-content: space-between;
@@ -15,32 +15,55 @@ export const StyledRowContainer = styled.div`
   flex-direction: row;
   margin: 5px;
   padding: 5px;
+  align-items: center;
 `;
 
-export const StyledSearchBar = styled.input`
+export const StyledSearchBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: none;
-  padding: 0.3rem;
+  padding: 0.1rem;
   margin: 0.3rem;
   border-radius: 5px;
-  width: 10rem;
+  width: 11rem;
   background-color: rgba(255, 255, 255, 0.15);
 
-  ::placeholder {
+  input {
+    border: none;
+    padding: 0.3rem;
+    margin: 0.3rem;
+    border-radius: 5px;
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  input::placeholder {
     color: white;
+  }
+
+  .BiSearch {
+    margin: 10px;
   }
 `;
 
 export const StyledUserIcon = styled.div`
-  border-radius: 50%;
-  width: 2rem;
-  background-color: whitesmoke;
+  width: 2.3rem;
+  height: 2.3rem;
+  margin: 10px;
+
+  img {
+    width: inherit;
+    height: auto;
+    border-radius: 50%;
+  }
 `;
 
-export const StyledModeToogle = styled.label`
+export const StyledModeToogle = styled.div`
   position: relative;
   display: inline-block;
   width: 50px;
-  height: 25px;
+  height: 100%;
   margin: 5px;
 
   input {
@@ -66,7 +89,6 @@ export const StyledModeToogle = styled.label`
     content: '';
     height: 26px;
     width: 26px;
-
     background-color: white;
     -webkit-transition: 0.4s;
     transition: 0.4s;

@@ -19,9 +19,12 @@ export const StyledCardsContainer = styled.div`
 
 export const StyledWelcomeHeader = styled.h1`
   width: 100%;
-  font-weight: 200;
+  font-weight: 300;
+  margin: 0;
+  padding: 30px;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 60px;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 `;
 
 export const StyledCards = styled.div`

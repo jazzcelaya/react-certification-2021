@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiMenu, BiSearch } from 'react-icons/bi';
 import {
   StyledHeader,
   StyledRowContainer,
@@ -11,16 +12,21 @@ function HeaderBar() {
   return (
     <StyledHeader>
       <StyledRowContainer>
-        <div>=</div>
-        <StyledSearchBar type="text" placeholder="wizeline" />
+        <BiMenu />
+        <StyledSearchBar>
+          <BiSearch />
+          <input type="text" placeholder="wizeline" />
+        </StyledSearchBar>
       </StyledRowContainer>
       <StyledRowContainer>
         <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
           <input id="darkmode-switch" type="checkbox" />
           <span className="slider round" />
         </StyledModeToogle>
-
-        <StyledUserIcon />
+        <p>Dark Mode</p>
+        <StyledUserIcon>
+          <img alt="user" src="default_user.webp" />
+        </StyledUserIcon>
       </StyledRowContainer>
     </StyledHeader>
   );
