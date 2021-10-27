@@ -15,7 +15,6 @@ function Cards() {
       <StyledCardsContainer>
         {items.map((item) => {
           const { thumbnails, title, description } = item.snippet;
-          console.log(item);
           return (
             <Card image={thumbnails.high.url} description={description} title={title} />
           );
