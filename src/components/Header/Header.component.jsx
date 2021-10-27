@@ -20,7 +20,7 @@ function HeaderBar() {
       </StyledRowContainer>
       <StyledRowContainer>
         <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
-          <input id="darkmode-switch" type="checkbox" />
+          <input dara-testid="searchbar-input" id="darkmode-switch" type="checkbox" />
           <span className="slider round" />
         </StyledModeToogle>
         <p>Dark Mode</p>

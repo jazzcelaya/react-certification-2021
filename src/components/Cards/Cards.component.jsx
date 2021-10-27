@@ -10,13 +10,19 @@ import mock from './mock.data';
 function Cards() {
   const { items } = mock;
   return (
-    <StyledCardsGeneralContainer>
-      <StyledWelcomeHeader>Welcome to the Challenge!</StyledWelcomeHeader>
+    <StyledCardsGeneralContainer data-testid="cards">
+      <StyledWelcomeHeader data-testid="welcome-header">Welcome to the Challenge!</StyledWelcomeHeader>
       <StyledCardsContainer>
         {items.map((item) => {
-          const { thumbnails, title, description } = item.snippet;
+          const { etag, snippet } = item;
+          const { thumbnails, title, description } = snippet;
           return (
-            <Card image={thumbnails.high.url} description={description} title={title} />
+            <Card
+              image={thumbnails.high.url}
+              description={description}
+              title={title}
+              key={etag}
+            />
           );
         })}
       </StyledCardsContainer>
