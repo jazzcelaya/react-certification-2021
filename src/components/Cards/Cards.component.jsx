@@ -7,16 +7,25 @@ import {
 import Card from './Card.component';
 import mock from './mock.data';
 
-function Cards() {
-  const { items } = mock;
+function Cards({ items }) {
+  const itemsArray = items || mock.items;
   return (
-    <StyledCardsGeneralContainer>
-      <StyledWelcomeHeader>Welcome to the Challenge!</StyledWelcomeHeader>
+    <StyledCardsGeneralContainer data-testid="cards">
+      <StyledWelcomeHeader data-testid="welcome-header">
+        Welcome to the Challenge!
+      </StyledWelcomeHeader>
       <StyledCardsContainer>
-        {items.map((item) => {
-          const { thumbnails, title, description } = item.snippet;
+        {itemsArray.map((item, i) => {
+          const { etag, snippet } = item;
+          const { thumbnails, title, description } = snippet;
+          const key = etag + i;
           return (
-            <Card image={thumbnails.high.url} description={description} title={title} />
+            <Card
+              image={thumbnails.high.url}
+              description={description}
+              title={title}
+              key={key}
+            />
           );
         })}
       </StyledCardsContainer>
