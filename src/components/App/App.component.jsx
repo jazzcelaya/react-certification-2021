@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
-//import HomePage from '../../pages/Home';
+import VideoDetails from '../VideoDetails';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
@@ -42,12 +42,15 @@ function App() {
               <Route exact path="/">
                 <Cards />
               </Route>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
               <Private exact path="/secret">
                 <SecretPage />
               </Private>
+              <Route path="/:videoId">
+                <VideoDetails />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
               <Route path="*">
                 <NotFound />
               </Route>

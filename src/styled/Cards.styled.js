@@ -34,6 +34,7 @@ export const StyledCards = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 0 lightgray;
   border: solid 1px lightgray;
+  overflow: hidden;
 
   img {
     width: 100%;
@@ -43,6 +44,7 @@ export const StyledCards = styled.div`
   }
 
   h2 {
+    color: black;
     margin: 0;
     font-weight: 400;
     font-size: 1.2rem;
@@ -51,6 +53,7 @@ export const StyledCards = styled.div`
   p {
     font-size: small;
     color: gray;
+    font-weight: 400;
   }
 
   div {
