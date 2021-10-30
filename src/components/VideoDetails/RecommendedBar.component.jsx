@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { StyledRecommendedBar } from '../../styled/VideoDetails.styled';
 
 function RecommnendedBar({ recommended }) {
-  console.log(recommended);
   return (
     <StyledRecommendedBar>
       {recommended.map((item) => {
