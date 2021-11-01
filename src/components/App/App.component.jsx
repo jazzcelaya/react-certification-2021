@@ -12,6 +12,7 @@ import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
+import GeneralContext from '../../state/GeneralContext';
 
 function App() {
   const [keyword, setKeyword] = useState('wizeline');
@@ -36,31 +37,33 @@ function App() {
 
   return (
     <div>
-      <Header setKeyword={setKeyword} keyword={keyword} />
-      <BrowserRouter>
-        <AuthProvider>
-          <Layout>
-            <Switch>
-              <Route exact path="/">
-                <Cards keyword={keyword} />
-              </Route>
-              <Private exact path="/secret">
-                <SecretPage />
-              </Private>
-              <Route path="/:videoId">
-                <VideoDetails keyword={keyword} />
-              </Route>
-              <Route exact path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-            <Fortune />
-          </Layout>
-        </AuthProvider>
-      </BrowserRouter>
+      <GeneralContext.Provider value={{ keyword, setKeyword }}>
+        <Header />
+        <BrowserRouter>
+          <AuthProvider>
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <Cards />
+                </Route>
+                <Private exact path="/secret">
+                  <SecretPage />
+                </Private>
+                <Route path="/:videoId">
+                  <VideoDetails />
+                </Route>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+              <Fortune />
+            </Layout>
+          </AuthProvider>
+        </BrowserRouter>
+      </GeneralContext.Provider>
     </div>
   );
 }

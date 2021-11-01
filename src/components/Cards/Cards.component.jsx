@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import GeneralContext from '../../state/GeneralContext';
 import {
   StyledCardsContainer,
   StyledCardsGeneralContainer,
@@ -8,8 +9,9 @@ import { getVideos } from '../../utils/services';
 import Card from './Card.component';
 import { mockData } from './mock.data';
 
-function Cards({ keyword }) {
+function Cards() {
   const [items, setItems] = useState(mockData.items);
+  const { keyword } = useContext(GeneralContext);
 
   useEffect(() => {
     async function loadVideos() {

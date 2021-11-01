@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export async function getVideos(keyword) {
   const searchBaseUrl = `https://www.googleapis.com/youtube/v3/search?maxResults=25&key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${keyword}`;
+  console.log(searchBaseUrl);
   try {
     const response = await axios({
       url: searchBaseUrl,

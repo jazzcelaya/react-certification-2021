@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiMenu } from 'react-icons/bi';
+import GeneralContext from '../../state/GeneralContext';
 import {
   StyledHeader,
   StyledRowContainer,
@@ -8,7 +9,9 @@ import {
 } from '../../styled/Header.styled';
 import SearchBar from './SearchBar.component';
 
-function HeaderBar({ keyword, setKeyword }) {
+function HeaderBar() {
+  const { keyword, setKeyword } = useContext(GeneralContext);
+
   return (
     <StyledHeader>
       <StyledRowContainer>

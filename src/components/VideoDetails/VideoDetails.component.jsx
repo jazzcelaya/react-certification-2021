@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
+import GeneralContext from '../../state/GeneralContext';
 import { StyledVideoDetails } from '../../styled/VideoDetails.styled';
 import RecommnendedBar from './RecommendedBar.component';
 import { getVideoDetails, getVideos } from '../../utils/services';
 
-function VideoDetails({ keyword }) {
+function VideoDetails() {
+  const { keyword } = useContext(GeneralContext);
   const { videoId } = useParams();
   const [recommended, setRecommended] = useState([]);
   const [videoTitle, setVideoTitle] = useState('');
