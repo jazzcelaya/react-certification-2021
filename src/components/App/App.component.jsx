@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
@@ -14,6 +14,8 @@ import Layout from '../Layout';
 import { random } from '../../utils/fns';
 
 function App() {
+  const [keyword, setKeyword] = useState('wizeline');
+
   useLayoutEffect(() => {
     const { body } = document;
 
@@ -34,19 +36,19 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header setKeyword={setKeyword} keyword={keyword} />
       <BrowserRouter>
         <AuthProvider>
           <Layout>
             <Switch>
               <Route exact path="/">
-                <Cards />
+                <Cards keyword={keyword} />
               </Route>
               <Private exact path="/secret">
                 <SecretPage />
               </Private>
               <Route path="/:videoId">
-                <VideoDetails />
+                <VideoDetails keyword={keyword} />
               </Route>
               <Route exact path="/login">
                 <LoginPage />

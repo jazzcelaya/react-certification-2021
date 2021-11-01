@@ -30,6 +30,7 @@ export const StyledSearchBar = styled.div`
   background-color: rgba(255, 255, 255, 0.15);
 
   input {
+    color: white;
     border: none;
     padding: 0.3rem;
     margin: 0.3rem;

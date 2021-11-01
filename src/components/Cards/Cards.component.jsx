@@ -8,18 +8,18 @@ import { getVideos } from '../../utils/services';
 import Card from './Card.component';
 import { mockData } from './mock.data';
 
-function Cards() {
+function Cards({ keyword }) {
   const [items, setItems] = useState(mockData.items);
 
   useEffect(() => {
     async function loadVideos() {
-      const response = await getVideos();
+      const response = await getVideos(keyword);
       if (response.status === 200) {
         setItems(response.data.items);
       }
     }
     loadVideos();
-  }, []);
+  }, [keyword]);
 
   return (
     <StyledCardsGeneralContainer data-testid="cards">

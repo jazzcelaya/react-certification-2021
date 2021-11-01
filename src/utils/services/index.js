@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const searchBaseUrl = `https://www.googleapis.com/youtube/v3/search?maxResults=25&key=${process.env.REACT_APP_API_KEY}&part=snippet`;
-
-export async function getVideos() {
+export async function getVideos(keyword) {
+  const searchBaseUrl = `https://www.googleapis.com/youtube/v3/search?maxResults=25&key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${keyword}`;
   try {
     const response = await axios({
       url: searchBaseUrl,

@@ -4,7 +4,7 @@ import { StyledVideoDetails } from '../../styled/VideoDetails.styled';
 import RecommnendedBar from './RecommendedBar.component';
 import { getVideoDetails, getVideos } from '../../utils/services';
 
-function VideoDetails() {
+function VideoDetails({ keyword }) {
   const { videoId } = useParams();
   const [recommended, setRecommended] = useState([]);
   const [videoTitle, setVideoTitle] = useState('');
@@ -12,7 +12,7 @@ function VideoDetails() {
 
   useEffect(() => {
     async function loadVideos() {
-      const response = await getVideos();
+      const response = await getVideos(keyword);
       const detailsResponse = await getVideoDetails(videoId);
       if (response.status === 200) {
         setRecommended(response.data.items);
@@ -24,7 +24,7 @@ function VideoDetails() {
       }
     }
     loadVideos();
-  }, []);
+  }, [keyword, videoId]);
 
   return (
     <StyledVideoDetails>
