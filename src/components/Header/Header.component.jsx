@@ -4,11 +4,11 @@ import {
   StyledHeader,
   StyledRowContainer,
   StyledUserIcon,
-  StyledModeToogle,
 } from '../../styled/Header.styled';
 import SearchBar from './SearchBar.component';
+import Switcher from '../Switcher';
 
-function HeaderBar({ keyword, setKeyword }) {
+function HeaderBar({ keyword, setKeyword, toogleTheme }) {
   return (
     <StyledHeader>
       <StyledRowContainer>
@@ -16,10 +16,7 @@ function HeaderBar({ keyword, setKeyword }) {
         <SearchBar setKeyword={setKeyword} keyword={keyword} />
       </StyledRowContainer>
       <StyledRowContainer>
-        <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
-          <input dara-testid="searchbar-input" id="darkmode-switch" type="checkbox" />
-          <span className="slider round" />
-        </StyledModeToogle>
+        <Switcher toogleTheme={toogleTheme} />
         <p>Dark Mode</p>
         <StyledUserIcon>
           <img alt="user" src="default_user.webp" />
