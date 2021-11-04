@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div>
-      <ThemeContext.Provider value={darkTheme}>
+      <ThemeContext.Provider value={{ darkTheme, toggleTheme }}>
         <GeneralContext.Provider value={{ keyword, setKeyword }}>
           <Header />
           <BrowserRouter>

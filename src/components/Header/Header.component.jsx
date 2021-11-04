@@ -5,8 +5,8 @@ import {
   StyledHeader,
   StyledRowContainer,
   StyledUserIcon,
-  StyledModeToogle,
 } from '../../styled/Header.styled';
+import ToggleSwitch from './ToggleSwitch.components';
 import SearchBar from './SearchBar.component';
 
 function HeaderBar() {
@@ -19,10 +19,7 @@ function HeaderBar() {
         <SearchBar setKeyword={setKeyword} keyword={keyword} />
       </StyledRowContainer>
       <StyledRowContainer>
-        <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
-          <input dara-testid="searchbar-input" id="darkmode-switch" type="checkbox" />
-          <span className="slider round" />
-        </StyledModeToogle>
+        <ToggleSwitch />
         <p>Dark Mode</p>
         <StyledUserIcon>
           <img alt="user" src="default_user.webp" />
