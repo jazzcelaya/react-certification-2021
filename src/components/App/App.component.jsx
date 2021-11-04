@@ -13,9 +13,15 @@ import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
 import GeneralContext from '../../state/GeneralContext';
+import ThemeContext from '../../state/ThemeContext';
 
 function App() {
   const [keyword, setKeyword] = useState('wizeline');
+  const [darkTheme, setDarkTheme] = useState(true);
+
+  const toggleTheme = () => {
+    setDarkTheme((prevDarkTheme) => !prevDarkTheme);
+  };
 
   useLayoutEffect(() => {
     const { body } = document;
@@ -37,33 +43,35 @@ function App() {
 
   return (
     <div>
-      <GeneralContext.Provider value={{ keyword, setKeyword }}>
-        <Header />
-        <BrowserRouter>
-          <AuthProvider>
-            <Layout>
-              <Switch>
-                <Route exact path="/">
-                  <Cards />
-                </Route>
-                <Private exact path="/secret">
-                  <SecretPage />
-                </Private>
-                <Route path="/:videoId">
-                  <VideoDetails />
-                </Route>
-                <Route exact path="/login">
-                  <LoginPage />
-                </Route>
-                <Route path="*">
-                  <NotFound />
-                </Route>
-              </Switch>
-              <Fortune />
-            </Layout>
-          </AuthProvider>
-        </BrowserRouter>
-      </GeneralContext.Provider>
+      <ThemeContext.Provider value={darkTheme}>
+        <GeneralContext.Provider value={{ keyword, setKeyword }}>
+          <Header />
+          <BrowserRouter>
+            <AuthProvider>
+              <Layout>
+                <Switch>
+                  <Route exact path="/">
+                    <Cards />
+                  </Route>
+                  <Private exact path="/secret">
+                    <SecretPage />
+                  </Private>
+                  <Route path="/:videoId">
+                    <VideoDetails />
+                  </Route>
+                  <Route exact path="/login">
+                    <LoginPage />
+                  </Route>
+                  <Route path="*">
+                    <NotFound />
+                  </Route>
+                </Switch>
+                <Fortune />
+              </Layout>
+            </AuthProvider>
+          </BrowserRouter>
+        </GeneralContext.Provider>
+      </ThemeContext.Provider>
     </div>
   );
 }
