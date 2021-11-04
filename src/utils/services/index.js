@@ -1,11 +1,14 @@
 import axios from 'axios';
 
+const baseUrl = 'https://www.googleapis.com/youtube/v3';
+const apiKey = process.env.REACT_APP_API_KEY;
+const maxResults = 25;
+
 export async function getVideos(keyword) {
-  const searchBaseUrl = `https://www.googleapis.com/youtube/v3/search?maxResults=25&key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${keyword}`;
-  console.log(searchBaseUrl);
+  const searchUrl = `${baseUrl}/search?maxResults=${maxResults}&key=${apiKey}&part=snippet&q=${keyword}`;
   try {
     const response = await axios({
-      url: searchBaseUrl,
+      url: searchUrl,
       method: 'GET',
     });
     return response;
@@ -17,9 +20,9 @@ export async function getVideos(keyword) {
 
 export async function getVideoDetails(videoId) {
   try {
-    const videoBaseUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.REACT_APP_API_KEY}&part=snippet`;
+    const videoUrl = `${baseUrl}/videos?id=${videoId}&key=${apiKey}&part=snippet`;
     const response = await axios({
-      url: videoBaseUrl,
+      url: videoUrl,
       method: 'GET',
     });
     return response;

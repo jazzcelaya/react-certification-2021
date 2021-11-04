@@ -14,7 +14,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
         type="text"
         placeholder={keyword}
         id="header-search"
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
     </StyledSearchBar>
   );

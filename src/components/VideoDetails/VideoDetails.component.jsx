@@ -14,10 +14,10 @@ function VideoDetails() {
 
   useEffect(() => {
     async function loadVideos() {
-      const response = await getVideos(keyword);
+      const videosResponse = await getVideos(keyword);
       const detailsResponse = await getVideoDetails(videoId);
-      if (response.status === 200) {
-        setRecommended(response.data.items);
+      if (videosResponse.status === 200) {
+        setRecommended(videosResponse.data.items);
       }
       if (detailsResponse.status === 200) {
         const { description, title } = detailsResponse.data.items[0].snippet;

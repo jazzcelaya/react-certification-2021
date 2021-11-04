@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyledCheckBoxLabel, StyledCheckBox, StyledCheckBoxWrapper } from '../../styled/ToggleSwitch.styled';
+import {
+  StyledCheckBoxLabel,
+  StyledCheckBox,
+  StyledCheckBoxWrapper,
+} from '../../styled/ToggleSwitch.styled';
 
 const ToggleSwitch = () => {
   return (
