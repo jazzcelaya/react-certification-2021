@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, useReducer } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
@@ -15,12 +15,33 @@ import { random } from '../../utils/fns';
 import GeneralContext from '../../state/GeneralContext';
 import ThemeContext from '../../state/ThemeContext';
 
+const defaultTheme = {
+  color: 'black',
+  backgroundColor: 'white',
+  detailsColor: 'rgba(0, 0, 0, 0.54)',
+  headerColor: '#1c5476',
+};
+
+const darkTheme = {
+  color: 'white',
+  backgroundColor: '#303030',
+  detailsColor: 'rgba(255, 255, 255, 0.7)',
+  headerColor: '#556cd6;',
+};
+
+function reducer(state) {
+  if (!state.isDark) {
+    return { theme: darkTheme, isDark: true };
+  }
+  return { theme: defaultTheme, isDark: false };
+}
+
 function App() {
   const [keyword, setKeyword] = useState('wizeline');
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { theme: defaultTheme, isDark: false });
 
   const toggleTheme = () => {
-    setDarkTheme((prevDarkTheme) => !prevDarkTheme);
+    dispatch();
   };
 
   useLayoutEffect(() => {
@@ -41,18 +62,11 @@ function App() {
     };
   }, []);
 
-  const theme = {
-    color: darkTheme ? 'white' : 'black',
-    backgroundColor: darkTheme ? '#303030' : 'white',
-    detailsColor: darkTheme ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.54)',
-    headerColor: darkTheme ? '#556cd6;' : '#1c5476',
-  };
-
   return (
     <div>
-      <ThemeContext.Provider value={{ darkTheme, setDarkTheme, toggleTheme }}>
+      <ThemeContext.Provider value={{ toggleTheme }}>
         <GeneralContext.Provider value={{ keyword, setKeyword }}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={state.theme}>
             <Header />
             <BrowserRouter>
               <AuthProvider>

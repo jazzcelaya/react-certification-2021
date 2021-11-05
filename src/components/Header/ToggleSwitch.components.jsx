@@ -8,7 +8,7 @@ import {
 const ToggleSwitch = ({ functionality }) => {
   return (
     <StyledCheckBoxWrapper>
-      <StyledCheckBox id="checkbox" type="checkbox" onClick={functionality}/>
+      <StyledCheckBox id="checkbox" type="checkbox" onClick={functionality} />
       <StyledCheckBoxLabel htmlFor="checkbox" />
     </StyledCheckBoxWrapper>
   );
