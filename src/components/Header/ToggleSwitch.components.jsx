@@ -5,10 +5,10 @@ import {
   StyledCheckBoxWrapper,
 } from '../../styled/ToggleSwitch.styled';
 
-const ToggleSwitch = () => {
+const ToggleSwitch = ({ functionality }) => {
   return (
     <StyledCheckBoxWrapper>
-      <StyledCheckBox id="checkbox" type="checkbox" />
+      <StyledCheckBox id="checkbox" type="checkbox" onClick={functionality}/>
       <StyledCheckBoxLabel htmlFor="checkbox" />
     </StyledCheckBoxWrapper>
   );

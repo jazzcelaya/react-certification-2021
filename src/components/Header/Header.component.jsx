@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import GeneralContext from '../../state/GeneralContext';
+import ThemeContext from '../../state/ThemeContext';
 import {
   StyledHeader,
   StyledRowContainer,
@@ -11,6 +12,7 @@ import SearchBar from './SearchBar.component';
 
 function HeaderBar() {
   const { keyword, setKeyword } = useContext(GeneralContext);
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <StyledHeader>
@@ -19,7 +21,7 @@ function HeaderBar() {
         <SearchBar setKeyword={setKeyword} keyword={keyword} />
       </StyledRowContainer>
       <StyledRowContainer>
-        <ToggleSwitch />
+        <ToggleSwitch functionality={toggleTheme} />
         <p>Dark Mode</p>
         <StyledUserIcon>
           <img alt="user" src="default_user.webp" />
