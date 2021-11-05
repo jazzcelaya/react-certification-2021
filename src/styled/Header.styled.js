@@ -5,7 +5,7 @@ export const StyledHeader = styled.header`
   display: flex;
   height: 64px;
   width: 100%;
-  background-color: #1c5476;
+  background-color: ${(props) => props.theme.headerColor};
   justify-content: space-between;
   align-items: center;
 `;
@@ -30,6 +30,7 @@ export const StyledSearchBar = styled.div`
   background-color: rgba(255, 255, 255, 0.15);
 
   input {
+    color: white;
     border: none;
     padding: 0.3rem;
     margin: 0.3rem;

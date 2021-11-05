@@ -7,6 +7,8 @@ export const StyledCardsGeneralContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   flex-flow: row wrap;
+  background-color: ${(props) => props.theme.backgroundColor};
+  overflow: auto;
 `;
 
 export const StyledCardsContainer = styled.div`
@@ -25,6 +27,7 @@ export const StyledWelcomeHeader = styled.h1`
   text-align: center;
   font-size: 60px;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  color: ${(props) => props.theme.color};
 `;
 
 export const StyledCards = styled.div`
@@ -34,6 +37,7 @@ export const StyledCards = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 0 lightgray;
   border: solid 1px lightgray;
+  overflow: hidden;
 
   img {
     width: 100%;
@@ -46,11 +50,13 @@ export const StyledCards = styled.div`
     margin: 0;
     font-weight: 400;
     font-size: 1.2rem;
+    color: ${(props) => props.theme.color};
   }
 
   p {
     font-size: small;
     color: gray;
+    font-weight: 400;
   }
 
   div {

@@ -1,28 +1,27 @@
-import React from 'react';
-import { BiMenu, BiSearch } from 'react-icons/bi';
+import React, { useContext } from 'react';
+import { BiMenu } from 'react-icons/bi';
+import GeneralContext from '../../state/GeneralContext';
+import ThemeContext from '../../state/ThemeContext';
 import {
   StyledHeader,
   StyledRowContainer,
-  StyledSearchBar,
   StyledUserIcon,
-  StyledModeToogle,
 } from '../../styled/Header.styled';
+import ToggleSwitch from './ToggleSwitch.components';
+import SearchBar from './SearchBar.component';
 
 function HeaderBar() {
+  const { keyword, setKeyword } = useContext(GeneralContext);
+  const { toggleTheme } = useContext(ThemeContext);
+
   return (
     <StyledHeader>
       <StyledRowContainer>
         <BiMenu />
-        <StyledSearchBar>
-          <BiSearch />
-          <input type="text" placeholder="wizeline" />
-        </StyledSearchBar>
+        <SearchBar setKeyword={setKeyword} keyword={keyword} />
       </StyledRowContainer>
       <StyledRowContainer>
-        <StyledModeToogle htmlFor="darkmode-switch" id="darkmode-switch">
-          <input dara-testid="searchbar-input" id="darkmode-switch" type="checkbox" />
-          <span className="slider round" />
-        </StyledModeToogle>
+        <ToggleSwitch functionality={toggleTheme} />
         <p>Dark Mode</p>
         <StyledUserIcon>
           <img alt="user" src="default_user.webp" />
