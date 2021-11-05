@@ -4,9 +4,11 @@ import { StyledSearchBar } from '../../styled/Header.styled';
 
 const SearchBar = ({ keyword, setKeyword }) => {
   const handleChange = (e) => {
-    e.preventDefault();
-    setKeyword(e.target.value);
+    if (e.key === 'Enter') {
+      setKeyword(e.target.value);
+    }
   };
+
   return (
     <StyledSearchBar>
       <BiSearch />
@@ -14,7 +16,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
         type="text"
         placeholder={keyword}
         id="header-search"
-        onChange={handleChange}
+        onKeyPress={handleChange}
       />
     </StyledSearchBar>
   );
