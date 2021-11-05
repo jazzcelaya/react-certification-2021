@@ -9,6 +9,7 @@ import SecretPage from '../../pages/Secret';
 import Header from '../Header';
 import Cards from '../Cards';
 import Private from '../Private';
+import Favorites from '../Favorites';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import { random } from '../../utils/fns';
@@ -74,6 +75,9 @@ function App() {
                   <Switch>
                     <Route exact path="/">
                       <Cards />
+                    </Route>
+                    <Route exact path="/favs">
+                      <Favorites />
                     </Route>
                     <Private exact path="/secret">
                       <SecretPage />
