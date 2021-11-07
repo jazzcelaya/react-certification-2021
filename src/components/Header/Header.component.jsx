@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -111,12 +112,14 @@ function HeaderBar() {
             { text: 'Home', route: '/' },
             { text: 'Favourites', route: '/favs' },
           ].map((menuItem) => (
-            <ListItem button key={menuItem.text}>
-              <ListItemIcon>
-                <BiChevronRight />
-              </ListItemIcon>
-              <ListItemText primary={menuItem.text} />
-            </ListItem>
+            <Link to={menuItem.route} style={{ color: 'black' }}>
+              <ListItem button key={menuItem.text}>
+                <ListItemIcon>
+                  <BiChevronRight />
+                </ListItemIcon>
+                <ListItemText primary={menuItem.text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
