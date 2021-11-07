@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
@@ -15,21 +15,7 @@ import Layout from '../Layout';
 import GeneralContext from '../../state/GeneralContext';
 import ThemeContext from '../../state/ThemeContext';
 
-const defaultTheme = {
-  color: 'black',
-  backgroundColor: 'white',
-  detailsColor: 'rgba(0, 0, 0, 0.54)',
-  headerColor: '#1c5476',
-};
-
-const darkTheme = {
-  color: 'white',
-  backgroundColor: '#303030',
-  detailsColor: 'rgba(255, 255, 255, 0.7)',
-  headerColor: '#556cd6;',
-};
-
-function reducer(state, action) {
+/* function reducer(state, action) {
   switch (action.type) {
     case 'toggleTheme':
       if (!state.isDark) {
@@ -41,21 +27,31 @@ function reducer(state, action) {
     default:
       return state;
   }
-}
+} */
 
 function App() {
   const [keyword, setKeyword] = useState('wizeline');
-  const [state, dispatch] = useReducer(reducer, { theme: defaultTheme, isDark: false });
+  const { setFavourites } = useContext(GeneralContext);
+  const { darkTheme, defaultTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState(defaultTheme);
+
+  useEffect(() => {
+    const favouritesArray = localStorage.getItem('favourites');
+    if (favouritesArray) {
+      setFavourites(favouritesArray);
+    }
+  }, [setFavourites]);
 
   const toggleTheme = () => {
-    dispatch({ type: 'toggleTheme' });
+    const newTheme = theme.isDark ? defaultTheme : darkTheme;
+    setTheme(newTheme);
   };
 
   return (
     <div>
       <ThemeContext.Provider value={{ toggleTheme }}>
         <GeneralContext.Provider value={{ keyword, setKeyword }}>
-          <ThemeProvider theme={state.theme}>
+          <ThemeProvider theme={theme}>
             <BrowserRouter>
               <AuthProvider>
                 <Header />

@@ -15,7 +15,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SearchBar from './SearchBar.component';
 import ToggleSwitch from './ToggleSwitch.components';
-import { StyledHeader, StyledUserIcon } from '../../styled/Header.styled';
+import {
+  StyledHeader,
+  StyledUserIcon,
+  StyledRowContainer,
+} from '../../styled/Header.styled';
 import GeneralContext from '../../state/GeneralContext';
 import ThemeContext from '../../state/ThemeContext';
 
@@ -64,29 +68,32 @@ function HeaderBar() {
   };
 
   return (
-    <Box sx={{ display: 'flex', height: '56px' }}>
+    <Box sx={{ display: 'flex', height: '64px' }}>
       <CssBaseline />
       <StyledHeader style={{ position: 'fixed' }} open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <BiMenu />
-          </IconButton>
-          <SearchBar setKeyword={setKeyword} keyword={keyword} />
-
-          <ToggleSwitch functionality={toggleTheme} />
-          <Typography variant="h6" noWrap component="div">
-            Dark Mode
-          </Typography>
-          <StyledUserIcon>
-            <img alt="user" src="default_user.webp" />
-          </StyledUserIcon>
-        </Toolbar>
+        <StyledHeader>
+          <StyledRowContainer>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            >
+              <BiMenu />
+            </IconButton>
+            <SearchBar setKeyword={setKeyword} keyword={keyword} />
+          </StyledRowContainer>
+          <StyledRowContainer>
+            <ToggleSwitch functionality={toggleTheme} />
+            <Typography variant="h6" noWrap component="div">
+              Dark Mode
+            </Typography>
+            <StyledUserIcon>
+              <img alt="user" src="default_user.webp" />
+            </StyledUserIcon>
+          </StyledRowContainer>
+        </StyledHeader>
       </StyledHeader>
       <Drawer
         sx={{

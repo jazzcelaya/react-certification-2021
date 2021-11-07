@@ -38,7 +38,7 @@ function VideoDetails() {
           title="YouTube video player"
           allowFullScreen
         />
-        <StyledButton onClick={() => console.log('this will save a favourite')}>
+        <StyledButton onClick={() => console.log(localStorage.getItem('favourites'))}>
           <BiBookmarkHeart /> Favourite
         </StyledButton>
         <h2>{videoTitle}</h2>
