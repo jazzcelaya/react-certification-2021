@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
@@ -9,10 +9,9 @@ import SecretPage from '../../pages/Secret';
 import Header from '../Header';
 import Cards from '../Cards';
 import Private from '../Private';
-import Favorites from '../Favorites';
+import Favourites from '../Favourites';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
-import { random } from '../../utils/fns';
 import GeneralContext from '../../state/GeneralContext';
 import ThemeContext from '../../state/ThemeContext';
 
@@ -30,11 +29,18 @@ const darkTheme = {
   headerColor: '#556cd6;',
 };
 
-function reducer(state) {
-  if (!state.isDark) {
-    return { theme: darkTheme, isDark: true };
+function reducer(state, action) {
+  switch (action.type) {
+    case 'toggleTheme':
+      if (!state.isDark) {
+        return { theme: darkTheme, isDark: true };
+      }
+      return { theme: defaultTheme, isDark: false };
+    case 'toggleFavourite':
+      return state;
+    default:
+      return state;
   }
-  return { theme: defaultTheme, isDark: false };
 }
 
 function App() {
@@ -42,51 +48,33 @@ function App() {
   const [state, dispatch] = useReducer(reducer, { theme: defaultTheme, isDark: false });
 
   const toggleTheme = () => {
-    dispatch();
+    dispatch({ type: 'toggleTheme' });
   };
-
-  useLayoutEffect(() => {
-    const { body } = document;
-
-    function rotateBackground() {
-      const xPercent = random(100);
-      const yPercent = random(100);
-      body.style.setProperty('--bg-position', `${xPercent}% ${yPercent}%`);
-    }
-
-    const intervalId = setInterval(rotateBackground, 3000);
-    body.addEventListener('click', rotateBackground);
-
-    return () => {
-      clearInterval(intervalId);
-      body.removeEventListener('click', rotateBackground);
-    };
-  }, []);
 
   return (
     <div>
       <ThemeContext.Provider value={{ toggleTheme }}>
         <GeneralContext.Provider value={{ keyword, setKeyword }}>
           <ThemeProvider theme={state.theme}>
-            <Header />
             <BrowserRouter>
               <AuthProvider>
+                <Header />
                 <Layout>
                   <Switch>
                     <Route exact path="/">
                       <Cards />
                     </Route>
                     <Route exact path="/favs">
-                      <Favorites />
+                      <Favourites />
                     </Route>
                     <Private exact path="/secret">
                       <SecretPage />
                     </Private>
-                    <Route path="/:videoId">
-                      <VideoDetails />
-                    </Route>
                     <Route exact path="/login">
                       <LoginPage />
+                    </Route>
+                    <Route path="/:videoId">
+                      <VideoDetails />
                     </Route>
                     <Route path="*">
                       <NotFound />

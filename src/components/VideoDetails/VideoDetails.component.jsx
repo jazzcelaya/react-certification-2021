@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
+import { BiBookmarkHeart } from 'react-icons/bi';
 import GeneralContext from '../../state/GeneralContext';
 import { StyledVideoDetails } from '../../styled/VideoDetails.styled';
 import RecommnendedBar from './RecommendedBar.component';
 import { getVideoDetails, getVideos } from '../../utils/services';
+import { StyledButton } from '../../styled/Button.styled';
 
 function VideoDetails() {
   const { keyword } = useContext(GeneralContext);
@@ -36,6 +38,9 @@ function VideoDetails() {
           title="YouTube video player"
           allowFullScreen
         />
+        <StyledButton onClick={() => console.log('this will save a favourite')}>
+          <BiBookmarkHeart /> Favourite
+        </StyledButton>
         <h2>{videoTitle}</h2>
         <p>{videoDescription}</p>
       </div>

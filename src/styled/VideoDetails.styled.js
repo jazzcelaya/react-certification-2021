@@ -5,7 +5,6 @@ export const StyledVideoDetails = styled.div`
   position: relative;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   flex-direction: row;
-  height: 100%;
   width: 100%;
   margin-top: 54px;
   overflow: auto;
