@@ -10,6 +10,7 @@ import Header from '../Header';
 import Cards from '../Cards';
 import Private from '../Private';
 import Favourites from '../Favourites';
+import FavouriteVideoDetails from '../FavouriteVideoDetails';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
 import GeneralContext from '../../state/GeneralContext';
@@ -83,6 +84,12 @@ function App() {
                     <Route exact path="/favs">
                       <Favourites favourites={favourites} />
                     </Route>
+                    <Route path="/favs/:videoId">
+                      <FavouriteVideoDetails
+                        toggleFavourite={toggleFavourite}
+                        favourites={favourites}
+                      />
+                    </Route>
                     <Private exact path="/secret">
                       <SecretPage />
                     </Private>
@@ -90,7 +97,10 @@ function App() {
                       <LoginPage />
                     </Route>
                     <Route path="/:videoId">
-                      <VideoDetails toggleFavourite={toggleFavourite} />
+                      <VideoDetails
+                        toggleFavourite={toggleFavourite}
+                        favourites={favourites}
+                      />
                     </Route>
                     <Route path="*">
                       <NotFound />
