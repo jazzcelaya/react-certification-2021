@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useReducer } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
@@ -15,36 +15,56 @@ import Layout from '../Layout';
 import GeneralContext from '../../state/GeneralContext';
 import ThemeContext from '../../state/ThemeContext';
 
-/* function reducer(state, action) {
+function reducer(favourites, action) {
   switch (action.type) {
-    case 'toggleTheme':
-      if (!state.isDark) {
-        return { theme: darkTheme, isDark: true };
-      }
-      return { theme: defaultTheme, isDark: false };
-    case 'toggleFavourite':
-      return state;
+    case 'setFavourites':
+      return [...action.payload.favourites];
+    case 'addFavourite':
+      localStorage.setItem(
+        'favourites',
+        JSON.stringify([...favourites, action.payload.favourite])
+      );
+      return [...favourites, action.payload.favourite];
+    case 'deleteFavourite': {
+      const filteredFavourites = favourites.filter(
+        (favourite) => favourite.videoId !== action.payload.id
+      );
+      localStorage.setItem('favourites', JSON.stringify(filteredFavourites));
+      return filteredFavourites;
+    }
     default:
-      return state;
+      return favourites;
   }
-} */
+}
 
 function App() {
   const [keyword, setKeyword] = useState('wizeline');
-  const { setFavourites } = useContext(GeneralContext);
+  // const { setFavourites } = useContext(GeneralContext);
   const { darkTheme, defaultTheme } = useContext(ThemeContext);
   const [theme, setTheme] = useState(defaultTheme);
+  const [favourites, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
     const favouritesArray = localStorage.getItem('favourites');
     if (favouritesArray) {
-      setFavourites(favouritesArray);
+      dispatch({
+        type: 'setFavourites',
+        payload: { favourites: JSON.parse(favouritesArray) },
+      });
     }
-  }, [setFavourites]);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme.isDark ? defaultTheme : darkTheme;
     setTheme(newTheme);
+  };
+
+  const toggleFavourite = (videoObject) => {
+    if (favourites.some((object) => object.videoId === videoObject.videoId)) {
+      dispatch({ type: 'deleteFavourite', payload: { id: videoObject.videoId } });
+    } else {
+      dispatch({ type: 'addFavourite', payload: { favourite: videoObject } });
+    }
   };
 
   return (
@@ -61,7 +81,7 @@ function App() {
                       <Cards />
                     </Route>
                     <Route exact path="/favs">
-                      <Favourites />
+                      <Favourites favourites={favourites} />
                     </Route>
                     <Private exact path="/secret">
                       <SecretPage />
@@ -70,7 +90,7 @@ function App() {
                       <LoginPage />
                     </Route>
                     <Route path="/:videoId">
-                      <VideoDetails />
+                      <VideoDetails toggleFavourite={toggleFavourite} />
                     </Route>
                     <Route path="*">
                       <NotFound />

@@ -1,8 +1,8 @@
 import React from 'react';
 
 const GeneralContext = React.createContext({
-  favorites: {},
-  setKeyword: () => {},
+  favourites: {},
+  setFavourites: () => {},
 });
 
 export default GeneralContext;

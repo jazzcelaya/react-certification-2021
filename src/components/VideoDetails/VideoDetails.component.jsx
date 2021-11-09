@@ -7,7 +7,7 @@ import RecommnendedBar from './RecommendedBar.component';
 import { getVideoDetails, getVideos } from '../../utils/services';
 import { StyledButton } from '../../styled/Button.styled';
 
-function VideoDetails() {
+function VideoDetails({ toggleFavourite }) {
   const { keyword } = useContext(GeneralContext);
   const { videoId } = useParams();
   const [recommended, setRecommended] = useState([]);
@@ -38,7 +38,16 @@ function VideoDetails() {
           title="YouTube video player"
           allowFullScreen
         />
-        <StyledButton onClick={() => console.log(localStorage.getItem('favourites'))}>
+        <StyledButton
+          onClick={(e) => {
+            e.preventDefault();
+            toggleFavourite({
+              videoId,
+              videoTitle,
+              videoDescription,
+            });
+          }}
+        >
           <BiBookmarkHeart /> Favourite
         </StyledButton>
         <h2>{videoTitle}</h2>
