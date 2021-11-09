@@ -81,15 +81,15 @@ function App() {
                     <Route exact path="/">
                       <Cards />
                     </Route>
-                    <Route exact path="/favs">
+                    <Private exact path="/favs">
                       <Favourites favourites={favourites} />
-                    </Route>
-                    <Route path="/favs/:videoId">
+                    </Private>
+                    <Private path="/favs/:videoId">
                       <FavouriteVideoDetails
                         toggleFavourite={toggleFavourite}
                         favourites={favourites}
                       />
-                    </Route>
+                    </Private>
                     <Private exact path="/secret">
                       <SecretPage />
                     </Private>

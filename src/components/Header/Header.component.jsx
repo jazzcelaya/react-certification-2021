@@ -116,7 +116,7 @@ function HeaderBar() {
         <List>
           {[
             { text: 'Home', route: '/' },
-            { text: 'Favourites', route: '/favs' },
+            { text: 'Login', route: '/login' },
           ].map((menuItem) => (
             <Link to={menuItem.route} style={{ color: 'black' }}>
               <ListItem button key={menuItem.text}>
