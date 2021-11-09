@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Card from './Card.component';
+import '@testing-library/jest-dom';
 
 afterEach(() => {
   cleanup();
