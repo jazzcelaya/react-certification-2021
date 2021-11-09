@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import Card from '../Card/Card.component';
 import GeneralContext from '../../state/GeneralContext';
 import {
   StyledCardsContainer,
@@ -6,7 +7,6 @@ import {
   StyledWelcomeHeader,
 } from '../../styled/Cards.styled';
 import { getVideos } from '../../utils/services';
-import Card from './Card.component';
 import { mockData } from './mock.data';
 
 function Cards() {
