@@ -14,23 +14,21 @@ function Favourites({ favourites }) {
   }, [favourites]);
 
   return (
-    <StyledCardsGeneralContainer data-testid="cards">
-      <StyledWelcomeHeader data-testid="welcome-header">
-        Welcome to the Challenge!
+    <StyledCardsGeneralContainer data-testid="favourites-cards">
+      <StyledWelcomeHeader data-testid="favourites-header">
+        Your Favourites
       </StyledWelcomeHeader>
       <StyledCardsContainer>
-        {items.map((item, i) => {
-          const { etag, snippet, id } = item;
-          const { thumbnails, title, description } = snippet;
-          const { videoId } = id;
-          const key = etag + i;
+        {items.map((item) => {
+          const { videoId, videoTitle, videoDescription, videoThumbnailUrl, key } = item;
           return (
             <Card
-              image={thumbnails.high.url}
-              description={description}
-              title={title}
+              image={videoThumbnailUrl}
+              description={videoDescription}
+              title={videoTitle}
               videoId={videoId}
               key={key}
+              baseLink="favs/"
             />
           );
         })}

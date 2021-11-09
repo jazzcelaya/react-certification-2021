@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledCards } from '../../styled/Cards.styled';
 
-const Card = ({ image, title, description, videoId }) => {
-  const link = `/${videoId}`;
+const Card = ({ image, title, description, videoId, baseLink }) => {
+  const link = `${baseLink}${videoId}`;
   return (
     <Link to={link}>
       <StyledCards data-testid="card">

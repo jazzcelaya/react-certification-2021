@@ -41,6 +41,7 @@ function Cards() {
               title={title}
               videoId={videoId}
               key={key}
+              baseLink="/"
             />
           );
         })}

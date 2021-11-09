@@ -12,7 +12,7 @@ function VideoDetails({ toggleFavourite }) {
   const { videoId } = useParams();
   const [recommended, setRecommended] = useState([]);
   const [videoTitle, setVideoTitle] = useState('');
-  const [videoDescription, setVideoDescription] = useState('');
+  const [videoDetails, setVideoDetails] = useState({});
 
   useEffect(() => {
     async function loadVideos() {
@@ -22,9 +22,15 @@ function VideoDetails({ toggleFavourite }) {
         setRecommended(videosResponse.data.items);
       }
       if (detailsResponse.status === 200) {
-        const { description, title } = detailsResponse.data.items[0].snippet;
+        const { etag, id } = detailsResponse.data.items[0];
+        const { description, title, thumbnails } = detailsResponse.data.items[0].snippet;
         setVideoTitle(title);
-        setVideoDescription(description);
+        setVideoDetails({
+          description,
+          videoThumbnailUrl: thumbnails.high.url,
+          etag,
+          id,
+        });
       }
     }
     loadVideos();
@@ -44,14 +50,16 @@ function VideoDetails({ toggleFavourite }) {
             toggleFavourite({
               videoId,
               videoTitle,
-              videoDescription,
+              videoDescription: videoDetails.description,
+              videoThumbnailUrl: videoDetails.videoThumbnailUrl,
+              etag: videoDetails.etag,
             });
           }}
         >
           <BiBookmarkHeart /> Favourite
         </StyledButton>
         <h2>{videoTitle}</h2>
-        <p>{videoDescription}</p>
+        <p>{videoDetails.description}</p>
       </div>
       <RecommnendedBar recommended={recommended} />
     </StyledVideoDetails>
