@@ -69,7 +69,7 @@ test('renders all the mocked amount of item cards when props array is empty', ()
   expect(cardsElements.length).toBe(mockData.items.length);
 });
 
-test('renders card with passed props', () => {
+test('renders a card per index of payloads array', () => {
   render(
     <BrowserRouter>
       <Cards items={mockData.items[0]} />

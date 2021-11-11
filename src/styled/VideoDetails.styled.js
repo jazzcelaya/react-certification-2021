@@ -6,6 +6,7 @@ export const StyledVideoDetails = styled.div`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   flex-direction: row;
   width: 100%;
+  height: 100%;
   margin-top: 54px;
   overflow: auto;
   background-color: ${(props) => props.theme.backgroundColor};

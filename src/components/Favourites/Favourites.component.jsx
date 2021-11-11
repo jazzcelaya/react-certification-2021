@@ -4,13 +4,13 @@ import {
   StyledCardsGeneralContainer,
   StyledWelcomeHeader,
 } from '../../styled/Cards.styled';
-import Card from '../Cards/Card.component';
+import Card from '../Card/Card.component';
 
 function Favourites({ favourites }) {
-  const [items, setItems] = useState([]);
+  const [videos, setvideos] = useState([]);
 
   useEffect(() => {
-    setItems(favourites);
+    setvideos(favourites);
   }, [favourites]);
 
   return (
@@ -19,8 +19,8 @@ function Favourites({ favourites }) {
         Your Favourites
       </StyledWelcomeHeader>
       <StyledCardsContainer>
-        {items.map((item) => {
-          const { videoId, videoTitle, videoDescription, videoThumbnailUrl, key } = item;
+        {videos.map((video) => {
+          const { videoId, videoTitle, videoDescription, videoThumbnailUrl, key } = video;
           return (
             <Card
               image={videoThumbnailUrl}

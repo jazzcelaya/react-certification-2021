@@ -60,11 +60,11 @@ function App() {
     setTheme(newTheme);
   };
 
-  const toggleFavourite = (videoObject) => {
-    if (favourites.some((object) => object.videoId === videoObject.videoId)) {
-      dispatch({ type: 'deleteFavourite', payload: { id: videoObject.videoId } });
+  const toggleFavourite = (video) => {
+    if (favourites.some((object) => object.videoId === video.videoId)) {
+      dispatch({ type: 'deleteFavourite', payload: { id: video.videoId } });
     } else {
-      dispatch({ type: 'addFavourite', payload: { favourite: videoObject } });
+      dispatch({ type: 'addFavourite', payload: { favourite: video } });
     }
   };
 
