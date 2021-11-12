@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledCardsGeneralContainer = styled.div`
-  margin-top: 6rem;
+  margin-top: 54px;
   display: flex;
   height: 100%;
   width: 100%;

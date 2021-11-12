@@ -1,26 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { BiBookmarkHeart } from 'react-icons/bi';
-import GeneralContext from '../../state/GeneralContext';
 import { StyledVideoDetails } from '../../styled/VideoDetails.styled';
-import RecommnendedBar from './RecommendedBar.component';
-import { getVideoDetails, getVideos } from '../../utils/services';
+import FavouritesSideBar from './FavouritesSideBar.component';
+import { getVideoDetails } from '../../utils/services';
 import { StyledButton } from '../../styled/Button.styled';
 
-function VideoDetails({ toggleFavourite }) {
-  const { keyword } = useContext(GeneralContext);
+function FavouriteVideoDetails({ toggleFavourite, favourites }) {
   const { videoId } = useParams();
-  const [recommended, setRecommended] = useState([]);
   const [videoTitle, setVideoTitle] = useState('');
   const [videoDetails, setVideoDetails] = useState({});
 
   useEffect(() => {
     async function loadVideos() {
-      const videosResponse = await getVideos(keyword);
       const detailsResponse = await getVideoDetails(videoId);
-      if (videosResponse.status === 200) {
-        setRecommended(videosResponse.data.items);
-      }
+
       if (detailsResponse.status === 200) {
         const { etag, id } = detailsResponse.data.items[0];
         const { description, title, thumbnails } = detailsResponse.data.items[0].snippet;
@@ -34,7 +28,7 @@ function VideoDetails({ toggleFavourite }) {
       }
     }
     loadVideos();
-  }, [keyword, videoId]);
+  }, [videoId]);
 
   return (
     <StyledVideoDetails>
@@ -61,9 +55,9 @@ function VideoDetails({ toggleFavourite }) {
         <h2>{videoTitle}</h2>
         <p>{videoDetails.description}</p>
       </div>
-      <RecommnendedBar recommended={recommended} />
+      <FavouritesSideBar favourites={favourites} />
     </StyledVideoDetails>
   );
 }
 
-export default VideoDetails;
+export default FavouriteVideoDetails;

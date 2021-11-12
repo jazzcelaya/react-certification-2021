@@ -5,8 +5,8 @@ export const StyledVideoDetails = styled.div`
   position: relative;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   flex-direction: row;
-  height: 100%;
   width: 100%;
+  height: 100%;
   margin-top: 54px;
   overflow: auto;
   background-color: ${(props) => props.theme.backgroundColor};

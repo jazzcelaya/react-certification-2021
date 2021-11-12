@@ -10,8 +10,8 @@ function LoginPage() {
 
   function authenticate(event) {
     event.preventDefault();
-    login();
-    history.push('/secret');
+    login('testpasswordString');
+    history.push('/favs');
   }
 
   return (
